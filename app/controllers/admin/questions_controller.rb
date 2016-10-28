@@ -10,15 +10,20 @@ class Admin::QuestionsController < AdminController
   end
 
   def new
+    @suggest = SuggestQuestion.find_by id: params[:id]
     @question = Question.new
     @question.answers.build
   end
 
   def create
     @question = Question.new question_params
-    if @question.save
-      flash[:success] = t "question_admin.create_success"
-      redirect_to admin_questions_path
+    if @question.validate_answers?
+      if @question.save
+        flash[:success] = t "question_admin.create_success"
+        redirect_to admin_questions_path
+      else
+        render :new
+      end
     else
       render :new
     end
@@ -28,9 +33,13 @@ class Admin::QuestionsController < AdminController
   end
 
   def update
-    if @question.update_attributes question_params
-      flash[:success] = t "question_admin.update_success"
-      redirect_to admin_questions_path
+    if @question.validate_answers?
+      if @question.update_attributes question_params
+        flash[:success] = t "question_admin.update_success"
+        redirect_to admin_questions_path
+      else
+        render :edit
+      end
     else
       render :edit
     end
@@ -62,5 +71,4 @@ class Admin::QuestionsController < AdminController
     def load_categories
       @category = Category.all
     end
-
 end

@@ -8,4 +8,8 @@ class Question < ApplicationRecord
 
   scope :recent, ->{order created_at: :desc}
   scope :random, ->{order("RANDOM()").limit Settings.exams.number_question}
+
+  def validate_answers?
+   self.answers.select{|answer| answer.is_correct?}.count >= Settings.single
+  end
 end

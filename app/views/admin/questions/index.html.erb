@@ -10,7 +10,14 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr id="question_<%= question.id%>">
-        <td><%= question.content %></td>
+        <td>
+          <%= question.content %>
+          <ul id="notice">
+            <% question.answers.each do |answer| %>
+              <%= render "answer", f: answer %>
+            <%end%>
+          </ul>
+        </td>
         <td class = "last-column">
           <span class="pull">
             <%= link_to edit_admin_question_path(question),
@@ -29,4 +36,4 @@
     <% end %>
   </tbody>
 </table>
-<div class="center"><%= will_paginate %></div>
+<%= will_paginate %>

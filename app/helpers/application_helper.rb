@@ -43,4 +43,12 @@ module ApplicationHelper
       t "status.success"
     end
   end
+
+  def status suggest
+    if suggest.status?
+      t "status.success"
+    else
+      t "status.warning"
+    end
+  end
 end

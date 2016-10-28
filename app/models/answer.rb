@@ -1,7 +1,6 @@
 class Answer < ApplicationRecord
-  has_many :answer_chooses, dependent: :destroy
-
   belongs_to :question, optional: true, inverse_of: :answers
+  has_many :answer_chooses, dependent: :destroy
 
   validates :question, presence: true
   validates :content, presence: true

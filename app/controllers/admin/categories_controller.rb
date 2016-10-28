@@ -1,4 +1,5 @@
 class Admin::CategoriesController < AdminController
+  before_action :logged_in_user
   before_action :verify_admin_access?
   before_action :load_category, except: [:new, :create, :index]
 
@@ -9,6 +10,11 @@ class Admin::CategoriesController < AdminController
 
   def new
     @category = Category.new
+  end
+
+  def show
+    @question = @category.questions.paginate page: params[:page],
+      per_page: Settings.per_page
   end
 
   def create

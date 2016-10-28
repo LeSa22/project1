@@ -17,4 +17,17 @@ User.create!(name: "Test User",
     password_confirmation: password, role: 0)
 end
 
-
+5.times do
+  name = Faker::Name.title
+  cate = Category.create! name: name
+  40.times do
+    question = cate.questions.build content: Faker::Lorem.characters(5), pattern: 1
+    question.answers = [
+      Answer.new(content: Faker::Lorem.characters(11), is_correct: true),
+      Answer.new(content: Faker::Lorem.characters(11), is_correct: false),
+      Answer.new(content: Faker::Lorem.characters(11), is_correct: false),
+      Answer.new(content: Faker::Lorem.characters(11), is_correct: false)
+    ].shuffle
+    question.save!
+  end
+end

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :answers
     resources :users
     resources :exams
+    resources :suggest_questions
   end
   resources :relationships, only: [:create, :destroy]
 end
