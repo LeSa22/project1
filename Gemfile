@@ -16,18 +16,18 @@ gem "config"
 gem "carrierwave", "0.11.2"
 gem "mini_magick", "4.5.1"
 gem "fog", "1.38.0"
+gem "faker"
 group :development, :test do
   gem "byebug", platform: :mri
+    gem "sqlite3"
 end
 
 group :development do
-  gem "sqlite3"
   gem "web-console"
   gem "listen", "~> 3.0.5"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
 end
-
 group :production do
   gem 'pg'
 end
