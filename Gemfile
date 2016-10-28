@@ -3,8 +3,6 @@ source "https://rubygems.org"
 gem "rails", "~> 5.0.0", ">= 5.0.0.1"
 gem "bcrypt", "3.1.11"
 gem "bootstrap-sass", "3.2.0.0"
-gem "config"
-gem "sqlite3"
 gem "puma", "~> 3.6.0"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
@@ -26,6 +24,10 @@ gem "web-console"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
 group :development do
+gem "sqlite3"
+end
 
+group :production do
+  gem 'pg'
 end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
