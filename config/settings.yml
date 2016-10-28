@@ -1,5 +1,5 @@
 type_img: "image/jpeg,image/gif,image/png"
-per_page: 8
+per_page: 2
 per_page_users: 3
 multiple: 0
 single: 1

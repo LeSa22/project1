@@ -8,7 +8,7 @@ User.create!(name: "Test User",
              password: "123456",
              password_confirmation: "123456")
 
-2.times do |n|
+99.times do |n|
   name = Faker::Name.name
   email = "trainee-#{n+1}@gmail.com"
   password = "123456"
@@ -31,3 +31,11 @@ end
     question.save!
   end
 end
+
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
